@@ -48,4 +48,4 @@ MINIMAX_API_KEY=你的key
 
 ## License
 
-MIT
+[Apache License 2.0](LICENSE)
