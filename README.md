@@ -73,6 +73,8 @@ MINIMAX_API_KEY=你的key
 
 也欢迎直接提 PR，一起把这个工具做得更好！
 
+或者发邮件联系我：[3268007793@qq.com](mailto:3268007793@qq.com)
+
 ---
 
 ## 📄 License
