@@ -1,0 +1,442 @@
+/* ==============================
+   AI 小老师 — 移动端优先设计
+   配色：温暖教育风，干净无广告
+   ============================== */
+
+:root {
+  --primary: #6C63FF;
+  --primary-light: #EEF0FF;
+  --secondary: #FF6B6B;
+  --success: #4ECDC4;
+  --success-light: #E8FFFE;
+  --warning: #FFD93D;
+  --bg: #F8F9FA;
+  --surface: #FFFFFF;
+  --text: #2D3436;
+  --text-muted: #636E72;
+  --border: #E0E0E0;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --radius: 16px;
+  --radius-sm: 8px;
+
+  /* 苏格拉底反问专属颜色 */
+  --socratic: #A855F7;
+  --socratic-light: #FAF0FF;
+
+  /* 例题卡片专属颜色 */
+  --example: #059669;
+  --example-light: #ECFDF5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── Header ─────────────────────────────── */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.header-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-icon { font-size: 22px; }
+
+.logo-text {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.badge {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--primary-light);
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* ── Subject Tabs ────────────────────────── */
+.subject-tabs {
+  position: fixed;
+  top: 57px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+}
+
+.tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.tab-icon { font-size: 20px; }
+
+/* ── Chat Area ───────────────────────────── */
+.chat-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 120px 12px 160px;
+  min-height: 100vh;
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Message Bubbles ─────────────────────── */
+.message {
+  display: flex;
+  gap: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.user-message {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.user-message .avatar {
+  background: var(--warning);
+}
+
+.bubble {
+  max-width: calc(100% - 56px);
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.user-message .bubble {
+  background: var(--primary);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.bot-message .bubble {
+  border-bottom-left-radius: 4px;
+}
+
+.bubble p { margin-bottom: 6px; }
+.bubble p:last-child { margin-bottom: 0; }
+.bubble ul { padding-left: 18px; }
+.bubble li { margin-bottom: 4px; }
+
+/* ── Socratic Question Card（苏格拉底反问） ── */
+.socratic-card {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: var(--socratic-light);
+  border: 1px solid var(--socratic);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--socratic);
+}
+
+.socratic-card .card-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--socratic);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.socratic-card .card-content {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ── Example Problem Card（例题卡片） ─────── */
+.example-card {
+  margin-top: 10px;
+  padding: 12px 14px;
+  background: var(--example-light);
+  border: 1px solid var(--example);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--example);
+}
+
+.example-card .card-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--example);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.example-card .card-content {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.example-card .hint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ── Answer to Socratic（回答反问后的评价） ── */
+.evaluation-card {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: #FFF7ED;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--warning);
+}
+
+.evaluation-card .card-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #D97706;
+  margin-bottom: 4px;
+}
+
+/* ── Input Area ──────────────────────────── */
+.input-area {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.input-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px 12px 8px;
+}
+
+.subject-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.subject-hint span {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.message-input {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+  max-height: 120px;
+  line-height: 1.5;
+  transition: border-color 0.2s;
+  background: var(--bg);
+}
+
+.message-input:focus {
+  border-color: var(--primary);
+  background: var(--surface);
+}
+
+.send-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.send-btn:active { transform: scale(0.92); }
+.send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.send-icon {
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.char-count {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* ── Thinking Overlay ────────────────────── */
+.thinking-overlay {
+  position: fixed;
+  bottom: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  border-radius: 30px;
+  padding: 10px 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 200;
+  border: 1px solid var(--border);
+}
+
+.thinking-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.thinking-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: bounce 1.2s infinite;
+}
+
+.thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+.thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+.thinking-text {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── Guardrail Notice ────────────────────── */
+.guardrail-notice {
+  padding: 10px 14px;
+  background: #FFF3CD;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--warning);
+  font-size: 13px;
+  color: #856404;
+}
+
+/* ── Animations ──────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%            { transform: translateY(-6px); }
+}
+
+/* ── Utility ─────────────────────────────── */
+.subject-label {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.subject-essay   { background: #FFF0E6; color: #C05621; }
+.subject-english { background: #E6F0FF; color: #1A56DB; }
+.subject-math    { background: #F0FFF4; color: #276749; }
+.subject-mistake { background: #FFF5F5; color: #C53030; }
+
+/* ── Desktop Adjust ──────────────────────── */
+@media (min-width: 600px) {
+  .subject-tabs {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 600px;
+  }
+  .input-area {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 600px;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+}

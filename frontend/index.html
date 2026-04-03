@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>AI 小老师 · 智能学习助手</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🎓</span>
+        <span class="logo-text">AI 小老师</span>
+      </div>
+      <div class="badge">不给答案，只引导思路</div>
+    </div>
+  </header>
+
+  <!-- 学科 Tab 栏 -->
+  <nav class="subject-tabs">
+    <button class="tab active" data-subject="essay">
+      <span class="tab-icon">✏️</span>
+      <span class="tab-label">作文</span>
+    </button>
+    <button class="tab" data-subject="english">
+      <span class="tab-icon">🔤</span>
+      <span class="tab-label">英语</span>
+    </button>
+    <button class="tab" data-subject="math">
+      <span class="tab-icon">🔢</span>
+      <span class="tab-label">数学</span>
+    </button>
+    <button class="tab" data-subject="mistake">
+      <span class="tab-icon">📝</span>
+      <span class="tab-label">错题</span>
+    </button>
+  </nav>
+
+  <!-- 对话区域 -->
+  <main class="chat-container">
+    <div class="chat-messages" id="chatMessages">
+      <!-- 欢迎消息 -->
+      <div class="message bot-message welcome-message">
+        <div class="avatar">🎓</div>
+        <div class="bubble">
+          <p>你好！我是你的 AI 小老师 👋</p>
+          <p>我可以帮你：</p>
+          <ul>
+            <li>✏️ 作文：给思路和好词，不代写</li>
+            <li>🔤 英语：解释单词，教你记忆方法</li>
+            <li>🔢 数学：帮你读懂题意，不给答案</li>
+            <li>📝 错题：分析错在哪里，举一反三</li>
+          </ul>
+          <p>选择一个学科，然后告诉我你的问题吧！</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 输入区域 -->
+  <footer class="input-area">
+    <div class="input-inner">
+      <div class="subject-hint" id="subjectHint">
+        当前：<span id="currentSubject">作文辅导</span>
+      </div>
+      <div class="input-row">
+        <textarea
+          id="messageInput"
+          class="message-input"
+          placeholder="输入你的问题，比如：帮我写一篇关于秋天的作文..."
+          rows="1"
+          maxlength="500"
+        ></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+          <span class="send-icon">发送</span>
+        </button>
+      </div>
+      <div class="char-count"><span id="charCount">0</span>/500</div>
+    </div>
+  </footer>
+
+  <!-- 加载动画遮罩 -->
+  <div class="thinking-overlay" id="thinkingOverlay" style="display:none">
+    <div class="thinking-dots">
+      <span></span><span></span><span></span>
+    </div>
+    <p class="thinking-text" id="thinkingText">老师正在思考中...</p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
