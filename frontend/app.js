@@ -3,9 +3,10 @@
  * 功能：学科 Tab 切换 / SSE 流式接收 / 苏格拉底反问 UI / 例题卡片
  */
 
+const RAILWAY_URL = 'RAILWAY_URL_PLACEHOLDER';
 const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://localhost:8000'
-  : '';  // 生产环境同域
+  : RAILWAY_URL;
 
 // ─── 状态 ──────────────────────────────────────────────────────────────────
 let currentSubject = 'essay';
